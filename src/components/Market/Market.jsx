@@ -1,5 +1,5 @@
-// Market.jsx
 import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { NFTMarketplaceContext } from "../../context/NFTMarketplaceContext";
 import NewCard from "../Card/NewCard";
 import "./market.css";
@@ -7,18 +7,21 @@ import "./market.css";
 const Market = () => {
   const { fetchNFTs } = useContext(NFTMarketplaceContext);
   const [nfts, setnfts] = useState([]);
-  const [nftsCopy, setnftsCopy] = useState([]);
+  const navigate = useNavigate();
+
   useEffect(() => {
     fetchNFTs().then((item) => {
       setnfts(item.reverse());
-      setnftsCopy(item);
-      console.log(nfts);
     });
   }, []);
 
+  const handleCardClick = (nftDetails) => {
+    console.log(nftDetails);
+    navigate(`/details/${nftDetails.tokenId}`, { state: { nftDetails } });
+  };
+
   return (
     <>
-      {" "}
       <div className="live-heading absolute-center">
         <span className="heading-gradient" style={{ marginTop: "30px" }}>
           MarketPlace
@@ -36,6 +39,7 @@ const Market = () => {
             price={item.price}
             timeRemaining={item.timeRemaining}
             type="buy"
+            onclick={() => handleCardClick(item)} // Pass the function itself
           />
         ))}
       </div>

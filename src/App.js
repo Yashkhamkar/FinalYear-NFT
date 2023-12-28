@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import { NFTMarketplaceProvider } from "./context/NFTMarketplaceContext";
 import FileUpload from "./components/Create/FileUpload";
 import Market from "./components/Market/Market";
+import Details from "./components/NftDetailPage/Details";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/create" element={<FileUpload />} />
           <Route path="/market" element={<Market />} />
+          <Route path="/details/:id" element={<Details />} />
         </Routes>
       </div>
     </NFTMarketplaceProvider>
