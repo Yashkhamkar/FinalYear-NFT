@@ -1,146 +1,3 @@
-// .app__navbar {
-//   width: 100%;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   background: rgba(255, 255, 255, 0.25);
-//   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-//   backdrop-filter: blur(4px);
-//   -webkit-backdrop-filter: blur(4px);
-//   border: 1px solid rgba(255, 255, 255, 0.18);
-//   position: fixed;
-//   z-index: 2;
-// }
-// .app__navbar-logo {
-//   display: flex;
-//   justify-content: flex-start;
-//   align-items: center;
-//   font-size: 30px;
-//   margin-left: 20px;
-//   font-weight: 700;
-//   text-transform: uppercase;
-// }
-// @media screen and (min-width: 2000px) {
-//   .app__navbar-logo img {
-//     width: 180px;
-//     height: 40px;
-//   }
-// }
-// .app__navbar-links {
-//   flex: 1;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   list-style: none;
-// }
-// .app__navbar-links li {
-//   margin: 0 1rem;
-//   cursor: pointer;
-//   flex-direction: column;
-// }
-// .app__navbar-links li div {
-//   width: 5px;
-//   height: 5px;
-//   background: transparent;
-//   border-radius: 100%;
-//   margin-bottom: 5px;
-// }
-// .app__navbar-links li a {
-//   color: var(--gray-color);
-//   text-decoration: none;
-//   flex-direction: column;
-//   text-transform: uppercase;
-//   font-weight: 500;
-//   transition: all 0.3s ease-in-out;
-// }
-// .app__navbar-links li a:hover {
-//   color: var(--secondary-color);
-// }
-// .app__navbar-links li:hover div {
-//   background: var(--secondary-color);
-// }
-// @media screen and (max-width: 900px) {
-//   .app__navbar-links {
-//     display: none;
-//   }
-// }
-// .app__navbar-menu {
-//   width: 35px;
-//   height: 35px;
-//   border-radius: 50%;
-//   position: relative;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   background-color: var(--secondary-color);
-// }
-// .app__navbar-menu svg {
-//   width: 70%;
-//   height: 70%;
-//   color: var(--white-color);
-// }
-// .app__navbar-menu div {
-//   position: fixed;
-//   top: 0;
-//   bottom: 0;
-//   right: 0;
-//   z-index: 5;
-//   padding: 1rem;
-//   width: 80%;
-//   height: 100vh;
-//   display: flex;
-//   justify-content: flex-end;
-//   align-items: flex-end;
-//   flex-direction: column;
-//   background: url("../../assets/bgWhite.png");
-//   background-color: var(--white-color);
-//   background-size: cover;
-//   background-repeat: repeat;
-//   /* top box shadow */
-//   box-shadow: 0px 0px 20px rgba(168, 168, 168, 0.15);
-// }
-// .app__navbar-menu div svg {
-//   width: 35px;
-//   height: 35px;
-//   color: var(--secondary-color);
-//   margin: 0.5rem 1rem;
-// }
-// .app__navbar-menu div ul {
-//   list-style: none;
-//   margin: 0;
-//   padding: 0;
-//   height: 100%;
-//   width: 100%;
-//   display: flex;
-//   justify-content: flex-start;
-//   align-items: flex-start;
-//   flex-direction: column;
-// }
-// .app__navbar-menu div ul li {
-//   margin: 1rem;
-// }
-// .app__navbar-menu div ul li a {
-//   color: var(--gray-color);
-//   text-decoration: none;
-//   font-size: 1rem;
-//   text-transform: uppercase;
-//   font-weight: 500;
-//   transition: all 0.3s ease-in-out;
-// }
-// .app__navbar-menu div ul li a:hover {
-//   color: var(--secondary-color);
-// }
-// @media screen and (min-width: 900px) {
-//   .app__navbar-menu div {
-//     display: none;
-//   }
-// }
-// @media screen and (min-width: 900px) {
-//   .app__navbar-menu {
-//     display: none;
-//   }
-// }
-
 .app__navbar {
   width: 100%;
   margin-left: -9px;
@@ -191,8 +48,34 @@
   color: #fff;
   z-index: 2;
 }
+.dropdown-container {
+  position: absolute;
+  top: 60px; /* Adjust the top position as needed */
+  right: 135px; /* Adjust the right position as needed */
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+}
 
+.dropdown {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 
+  li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: #f0f0f0; /* Add your desired hover background color */
+    }
+  }
+}
 .n-btn::after {
   --m-i: linear-gradient(#000, #000);
   --m-o: content-box, padding-box;
@@ -223,6 +106,10 @@
   filter: hue-rotate(0);
   animation: rotate-hue linear 500ms infinite;
   animation-play-state: paused;
+}
+.dropdown-container {
+  position: absolute; // or position: fixed;
+  // other styles...
 }
 
 .n-btn:hover::after {

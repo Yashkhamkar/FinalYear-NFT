@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { NFTMarketplaceContext } from "../../context/NFTMarketplaceContext";
 import NewCard from "../Card/NewCard";
-import "./market.css"
+import "./market.css";
 
 const Market = () => {
   const { fetchNFTs } = useContext(NFTMarketplaceContext);
@@ -17,10 +17,13 @@ const Market = () => {
   }, []);
 
   return (
-    <div className="live-heading absolute-center">
-      <span className="heading-gradient" style={{ marginTop: "30px" }}>
-        MarketPlace
-      </span>
+    <>
+      {" "}
+      <div className="live-heading absolute-center">
+        <span className="heading-gradient" style={{ marginTop: "30px" }}>
+          MarketPlace
+        </span>
+      </div>
       <div className="card-container">
         {nfts.map((item, index) => (
           <NewCard
@@ -36,7 +39,7 @@ const Market = () => {
           />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

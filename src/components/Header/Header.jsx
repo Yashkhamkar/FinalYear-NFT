@@ -13,15 +13,8 @@ const Dropdown = ({ onLogout, onProfile }) => {
   return (
     <div className="dropdown-container">
       <ul className="dropdown">
-        <div
-          style={{
-            background: "rebeccapurple",
-            listStyle: "none",
-          }}
-        >
-          <li onClick={onProfile}>Profile</li>
-          <li onClick={onLogout}>Logout</li>
-        </div>
+        <li onClick={onProfile}>Profile</li>
+        <li onClick={onLogout}>Logout</li>
       </ul>
     </div>
   );
