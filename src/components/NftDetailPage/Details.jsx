@@ -1,17 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import classes from "./details.module.css";
+import { NFTMarketplaceContext } from "../../context/NFTMarketplaceContext";
 
 const Details = () => {
   const location = useLocation();
   const nfts = location.state?.nftDetails;
-  useEffect(() => {
-    console.log(nfts);
-  }, [nfts]);
+  const { buyNft, CurrentAccount } = useContext(NFTMarketplaceContext);
 
   const buyNow = () => {
-    console.log("buy now");
-    // You can access the details of the selected NFT here using the `nfts` variable.
+    buyNft(nfts);
   };
 
   return (
@@ -39,9 +37,13 @@ const Details = () => {
                 : nfts?.description}
             </p>
           </div>
-          <button onClick={buyNow} className="n-btn">
-            BUY
-          </button>
+          {CurrentAccount === nfts.seller.toLowerCase() ? (
+            <p>You cannot buy your own nft</p>
+          ) : (
+            <button onClick={buyNow} className="p-btn">
+              BUY
+            </button>
+          )}
         </div>
       </div>
     </div>

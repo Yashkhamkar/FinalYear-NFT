@@ -16,7 +16,6 @@ const Market = () => {
   }, []);
 
   const handleCardClick = (nftDetails) => {
-    console.log(nftDetails);
     navigate(`/details/${nftDetails.tokenId}`, { state: { nftDetails } });
   };
 
