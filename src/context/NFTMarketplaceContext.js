@@ -118,7 +118,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
   const fetchNFTs = async () => {
     try {
       // const { contract } = await connectingWithSmartContract();
-      const provider = new ethers.providers.JsonRpcProvider();
+      const provider = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.g.alchemy.com/v2/Cgx1meggnhFoXSqIZapIkj0LPDZePCyS");
       // const provider = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.g.alchemy.com/v2/Cgx1meggnhFoXSqIZapIkj0LPDZePCyS");
       const contract = fetchContract(provider);
       const data = await contract.fetchMarketItems(); // Invoke fetchMarketItems function

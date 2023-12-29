@@ -13,8 +13,8 @@ const Market = () => {
     const fetchData = async () => {
       try {
         const items = await fetchNFTs();
-        console.log("Fetched Items:", items);
         setnfts(items ? items.reverse() : []);
+        console.log("Fetched Items:", items);
       } catch (error) {
         console.error("Error fetching NFTs:", error);
       }

@@ -4,5 +4,5 @@
 //0x008D90a91bFBAbcc25A7EBFa75f86149231bc06f
 //0xe28B996B1520710ac04122DCDA20Bb835D0138F5
 import NftContract from "./NftContract.json";
-export const nftaddress = "0xe28B996B1520710ac04122DCDA20Bb835D0138F5";
+export const nftaddress = "0x84Cb31c5331396e89D55a532c2Bc161E0fadC370";
 export const ABI = NftContract.abi;
