@@ -10,10 +10,18 @@ const Market = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchNFTs().then((item) => {
-      setnfts(item.reverse());
-    });
-  }, []);
+    const fetchData = async () => {
+      try {
+        const items = await fetchNFTs();
+        console.log("Fetched Items:", items);
+        setnfts(items ? items.reverse() : []);
+      } catch (error) {
+        console.error("Error fetching NFTs:", error);
+      }
+    };
+
+    fetchData();
+  }, [fetchNFTs]);
 
   const handleCardClick = (nftDetails) => {
     navigate(`/details/${nftDetails.tokenId}`, { state: { nftDetails } });
