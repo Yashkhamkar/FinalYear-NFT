@@ -37,6 +37,7 @@ const Market = () => {
             title={item.name}
             price={item.price}
             timeRemaining={item.timeRemaining}
+            show={true}
             type="buy"
             onclick={() => handleCardClick(item)} // Pass the function itself
           />

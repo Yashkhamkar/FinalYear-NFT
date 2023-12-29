@@ -112,6 +112,7 @@ const LiveAuction = ({ title, type, data, id }) => {
                     timeRemaining={item.timeRemaining}
                     price={item.price}
                     type={type}
+                    show={true}
                   />
                 </div>
               ))}

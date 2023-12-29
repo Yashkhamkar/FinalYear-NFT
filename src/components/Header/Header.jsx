@@ -13,7 +13,7 @@ const Dropdown = ({ onLogout, onProfile }) => {
   return (
     <div className="dropdown-container">
       <ul className="dropdown">
-        <li onClick={onProfile}>Profile</li>
+        <li onClick={onProfile}>Your NFT's</li>
         <li onClick={onLogout}>Logout</li>
       </ul>
     </div>
@@ -40,7 +40,7 @@ const Header = () => {
   };
 
   const handleProfile = () => {
-    navigate("/profile");
+    navigate("/nfts");
     setShowDropdown(false);
   };
 
@@ -118,15 +118,13 @@ const Header = () => {
           >
             <HiX onClick={() => setToggle(false)} />
             <ul>
-              {["home", "market", "create", "contact", "profile"].map(
-                (item) => (
-                  <li key={item}>
-                    <a href={`#${item}`} onClick={() => setToggle(false)}>
-                      {item}
-                    </a>
-                  </li>
-                )
-              )}
+              {["home", "market", "create", "contact"].map((item) => (
+                <li key={item}>
+                  <a href={`#${item}`} onClick={() => setToggle(false)}>
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </motion.div>
         )}

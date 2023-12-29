@@ -1,7 +1,15 @@
 import React from "react";
 import "./newcard.css";
 
-const NewCard = ({ image, title, price, timeRemaining, type, onclick }) => {
+const NewCard = ({
+  image,
+  title,
+  price,
+  timeRemaining,
+  type,
+  onclick,
+  show,
+}) => {
   const handleClick = () => {
     onclick();
   };
@@ -33,7 +41,26 @@ const NewCard = ({ image, title, price, timeRemaining, type, onclick }) => {
               ) : null}
             </div>
             <div className="line"></div>
-            <div className="avatar">
+            {show === true ? (
+              <div className="avatar">
+                <button
+                  className="n-btn"
+                  style={{
+                    marginTop: "10px",
+                    marginLeft: "13px",
+                    cursor: "pointer",
+                  }}
+                  onClick={handleClick}
+                >
+                  {type === "auction"
+                    ? "BID NOW"
+                    : type === "resell"
+                    ? "RESELL"
+                    : "BUY NOW"}
+                </button>
+              </div>
+            ) : null}
+            {/* <div className="avatar">
               <button
                 className="n-btn"
                 style={{
@@ -45,7 +72,7 @@ const NewCard = ({ image, title, price, timeRemaining, type, onclick }) => {
               >
                 {type === "auction" ? "BID NOW" : "BUY NOW"}
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

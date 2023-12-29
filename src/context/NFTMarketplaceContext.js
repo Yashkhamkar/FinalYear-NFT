@@ -91,7 +91,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
         ? await contract.createToken(url, price, {
             value: listingPrice.toString(),
           })
-        : await contract.reSellToken(url, price, {
+        : await contract.resellToken(url, price, {
             value: listingPrice.toString(),
           });
       await transaction.wait();
@@ -151,11 +151,11 @@ export const NFTMarketplaceProvider = ({ children }) => {
 
   const fetchMyNFTs = async (type) => {
     try {
-      const contract = await connectingWithSmartContract();
+      const { contract } = await connectingWithSmartContract();
       const data =
         type == "fetchItemsListed"
           ? await contract.fetchItemsListed()
-          : await contract.fetchMyNFT();
+          : await contract.fetchMyNFTs();
       const items = await Promise.all(
         data.map(
           async ({ tokenId, seller, owner, price: unformattedPrice }) => {
@@ -229,7 +229,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
         title: "Success",
         text: "Your NFT has been purchased!",
       });
-      navigate("/profile");
+      navigate("/nfts");
     } catch (error) {
       Swal.fire({
         icon: "error",
