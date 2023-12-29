@@ -86,19 +86,24 @@ export const NFTMarketplaceProvider = ({ children }) => {
       const { contract } = await connectingWithSmartContract();
       console.log("Contract:", contract);
       const price = ethers.utils.parseUnits(formInputPrice, "ether");
+      console.log("Price:", price);
+      console.log("URL:", url);
+      console.log("isReselling:", isReselling);
+      console.log("id:", id);
       const listingPrice = await contract.getListingPrice();
+      console.log("Listing Price:", listingPrice.toString());
       const transaction = !isReselling
         ? await contract.createToken(url, price, {
             value: listingPrice.toString(),
           })
-        : await contract.resellToken(url, price, {
+        : await contract.resellToken(id, price, {
             value: listingPrice.toString(),
           });
       await transaction.wait();
       await Swal.fire({
         icon: "success",
         title: "Success",
-        text: "Your NFT has been created!",
+        text: "Your NFT has been listed!",
       });
       navigate("/market");
     } catch (error) {
@@ -250,6 +255,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
         checkIfWalletIsConnected,
         buyNft,
         disconnectWallet,
+        createSale,
         isConnected,
         CurrentAccount,
       }}

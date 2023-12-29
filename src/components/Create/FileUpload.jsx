@@ -82,146 +82,153 @@ const FileUpload = () => {
   };
 
   return (
-    <div className="formbold-main-wrapper">
-      {loading && (
-        <div className="terminal-loader">
-          <div className="terminal-header">
-            <div className="terminal-title">Status</div>
-            <div className="terminal-controls">
-              <div className="control close"></div>
-              <div className="control minimize"></div>
-              <div className="control maximize"></div>
+    <>
+      <div className="live-heading absolute-center">
+        <span className="heading-gradient" style={{ marginTop: "30px" }}>
+          Create NFT
+        </span>
+      </div>
+      <div className="formbold-main-wrapper">
+        {loading && (
+          <div className="terminal-loader">
+            <div className="terminal-header">
+              <div className="terminal-title">Status</div>
+              <div className="terminal-controls">
+                <div className="control close"></div>
+                <div className="control minimize"></div>
+                <div className="control maximize"></div>
+              </div>
             </div>
+            <div className="texti">Creating...</div>
           </div>
-          <div className="texti">Creating...</div>
-        </div>
-      )}
-      {!loading && (
-        <div className="formbold-form-wrapper">
-          <form onSubmit={sendFileToIPFS}>
-            <div className="formbold-mb-5">
-              <label htmlFor="email" className="formbold-form-label">
-                NFT Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Enter name of nft"
-                className="formbold-form-input"
-                value={name}
-                onChange={(e) => setname(e.target.value)}
-              />
-            </div>
-            <div className="formbold-mb-5">
-              <label htmlFor="email" className="formbold-form-label">
-                NFT Description
-              </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Add description of nft"
-                className="formbold-form-input"
-                value={description}
-                onChange={(e) => setdescription(e.target.value)}
-              />
-            </div>
-            <div className="formbold-mb-5">
-              <label htmlFor="price" className="formbold-form-label">
-                NFT Price
-              </label>
-              <input
-                type="text"
-                name="price"
-                id="price"
-                placeholder="Enter price of nft"
-                className="formbold-form-input"
-                value={price}
-                onChange={(e) => setprice(e.target.value)}
-              />
-            </div>
-
-            <div className="mb-6 pt-4">
-              <label className="formbold-form-label formbold-form-label-2">
-                Upload File
-              </label>
-
-              <div
-                className="formbold-mb-5 formbold-file-input"
-                style={{ cursor: "pointer" }}
-              >
-                <input
-                  type="file"
-                  name="file"
-                  id="file"
-                  ref={fileInputRef}
-                  style={{ display: "none" }}
-                  accept="image/*, audio/*, video/*"
-                  onChange={handleFileChange}
-                />
-                <label htmlFor="file" onClick={handleBrowseClick}>
-                  <div>
-                    <span className="formbold-drop-file">
-                      {selectedFileName || "Drop files here"}
-                    </span>
-                    <span className="formbold-or"> Or </span>
-                    <span
-                      className="formbold-browse"
-                      style={{ cursor: "pointer" }}
-                    >
-                      Browse{" "}
-                    </span>
-                  </div>
+        )}
+        {!loading && (
+          <div className="formbold-form-wrapper">
+            <form onSubmit={sendFileToIPFS}>
+              <div className="formbold-mb-5">
+                <label htmlFor="email" className="formbold-form-label">
+                  NFT Name
                 </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Enter name of nft"
+                  className="formbold-form-input"
+                  value={name}
+                  onChange={(e) => setname(e.target.value)}
+                />
+              </div>
+              <div className="formbold-mb-5">
+                <label htmlFor="email" className="formbold-form-label">
+                  NFT Description
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Add description of nft"
+                  className="formbold-form-input"
+                  value={description}
+                  onChange={(e) => setdescription(e.target.value)}
+                />
+              </div>
+              <div className="formbold-mb-5">
+                <label htmlFor="price" className="formbold-form-label">
+                  NFT Price
+                </label>
+                <input
+                  type="text"
+                  name="price"
+                  id="price"
+                  placeholder="Enter price of nft"
+                  className="formbold-form-input"
+                  value={price}
+                  onChange={(e) => setprice(e.target.value)}
+                />
               </div>
 
-              {selectedFileName?.length > 0 && (
-                <div className="formbold-file-list formbold-mb-5">
-                  <div className="formbold-file-item">
-                    <span
-                      className="formbold-file-name"
-                      style={{ color: "black" }}
-                    >
-                      {" "}
-                      {selectedFileName}{" "}
-                    </span>
-                    <button onClick={handleRemoveImage}>
-                      <svg
-                        width="10"
-                        height="10"
-                        viewBox="0 0 10 10"
-                        fill="none"
-                        cursor="pointer"
-                        color="black"
-                        xmlns="http://www.w3.org/2000/svg"
+              <div className="mb-6 pt-4">
+                <label className="formbold-form-label formbold-form-label-2">
+                  Upload File
+                </label>
+
+                <div
+                  className="formbold-mb-5 formbold-file-input"
+                  style={{ cursor: "pointer" }}
+                >
+                  <input
+                    type="file"
+                    name="file"
+                    id="file"
+                    ref={fileInputRef}
+                    style={{ display: "none" }}
+                    accept="image/*, audio/*, video/*"
+                    onChange={handleFileChange}
+                  />
+                  <label htmlFor="file" onClick={handleBrowseClick}>
+                    <div>
+                      <span className="formbold-drop-file">
+                        {selectedFileName || "Drop files here"}
+                      </span>
+                      <span className="formbold-or"> Or </span>
+                      <span
+                        className="formbold-browse"
+                        style={{ cursor: "pointer" }}
                       >
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M0.279337 0.279338C0.651787 -0.0931121 1.25565 -0.0931121 1.6281 0.279338L9.72066 8.3719C10.0931 8.74435 10.0931 9.34821 9.72066 9.72066C9.34821 10.0931 8.74435 10.0931 8.3719 9.72066L0.279337 1.6281C-0.0931125 1.25565 -0.0931125 0.651788 0.279337 0.279338Z"
-                          fill="currentColor"
-                        />
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M0.279337 9.72066C-0.0931125 9.34821 -0.0931125 8.74435 0.279337 8.3719L8.3719 0.279338C8.74435 -0.0931127 9.34821 -0.0931123 9.72066 0.279338C10.0931 0.651787 10.0931 1.25565 9.72066 1.6281L1.6281 9.72066C1.25565 10.0931 0.651787 10.0931 0.279337 9.72066Z"
-                          fill="currentColor"
-                        />
-                      </svg>
-                    </button>
-                  </div>
+                        Browse{" "}
+                      </span>
+                    </div>
+                  </label>
                 </div>
-              )}
-            </div>
-            <img src={file} alt="" />
-            <button className="formbold-btn w-full" onClick={sendFileToIPFS}>
-              Create Nft
-            </button>
-          </form>
-        </div>
-      )}
-    </div>
+
+                {selectedFileName?.length > 0 && (
+                  <div className="formbold-file-list formbold-mb-5">
+                    <div className="formbold-file-item">
+                      <span
+                        className="formbold-file-name"
+                        style={{ color: "black" }}
+                      >
+                        {" "}
+                        {selectedFileName}{" "}
+                      </span>
+                      <button onClick={handleRemoveImage}>
+                        <svg
+                          width="10"
+                          height="10"
+                          viewBox="0 0 10 10"
+                          fill="none"
+                          cursor="pointer"
+                          color="black"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M0.279337 0.279338C0.651787 -0.0931121 1.25565 -0.0931121 1.6281 0.279338L9.72066 8.3719C10.0931 8.74435 10.0931 9.34821 9.72066 9.72066C9.34821 10.0931 8.74435 10.0931 8.3719 9.72066L0.279337 1.6281C-0.0931125 1.25565 -0.0931125 0.651788 0.279337 0.279338Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M0.279337 9.72066C-0.0931125 9.34821 -0.0931125 8.74435 0.279337 8.3719L8.3719 0.279338C8.74435 -0.0931127 9.34821 -0.0931123 9.72066 0.279338C10.0931 0.651787 10.0931 1.25565 9.72066 1.6281L1.6281 9.72066C1.25565 10.0931 0.651787 10.0931 0.279337 9.72066Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <img src={file} alt="" />
+              <button className="formbold-btn w-full" onClick={sendFileToIPFS}>
+                Create Nft
+              </button>
+            </form>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

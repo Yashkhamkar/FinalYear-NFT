@@ -2,12 +2,14 @@ import React, { useState, useEffect, useContext } from "react";
 import "./profile.scss";
 import NewCard from "../Card/NewCard";
 import { NFTMarketplaceContext } from "../../context/NFTMarketplaceContext";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("Listed NFT's");
   const [nfts, setNFTs] = useState([]);
   const [mynfts, setMyNFTs] = useState([]);
   const { fetchMyNFTs, CurrentAccount } = useContext(NFTMarketplaceContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchMyNFTs("fetchItemsListed")
@@ -27,7 +29,9 @@ const Profile = () => {
   }, []);
 
   const activeNFTs = activeTab === "Listed NFT's" ? nfts : mynfts;
-
+  const resell = (item) => {
+    navigate(`/resell/${item.tokenId}`, { state: { item } });
+  };
   return (
     <section className="wrapper profile-body">
       <ul className="tabs">
@@ -79,6 +83,7 @@ const Profile = () => {
                   price={item.price}
                   type="resell"
                   show={true}
+                  onclick={() => resell(item)}
                 />
               ))}
             </div>
