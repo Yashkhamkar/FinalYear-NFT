@@ -118,7 +118,9 @@ export const NFTMarketplaceProvider = ({ children }) => {
   const fetchNFTs = async () => {
     try {
       // const { contract } = await connectingWithSmartContract();
-      const provider = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.g.alchemy.com/v2/Cgx1meggnhFoXSqIZapIkj0LPDZePCyS");
+      const provider = new ethers.providers.JsonRpcProvider(
+        "https://polygon-mumbai.g.alchemy.com/v2/Cgx1meggnhFoXSqIZapIkj0LPDZePCyS"
+      );
       // const provider = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.g.alchemy.com/v2/Cgx1meggnhFoXSqIZapIkj0LPDZePCyS");
       const contract = fetchContract(provider);
       const data = await contract.fetchMarketItems(); // Invoke fetchMarketItems function
@@ -149,7 +151,6 @@ export const NFTMarketplaceProvider = ({ children }) => {
       console.log(error);
     }
   };
-
 
   const fetchMyNFTs = async (type) => {
     try {
@@ -224,8 +225,11 @@ export const NFTMarketplaceProvider = ({ children }) => {
       const price = ethers.utils.parseUnits(nft.price.toString(), "ether");
       const transaction = await contract.createMarketSale(nft.tokenId, {
         value: price,
+        gasLimit: 300000,
       });
-      await transaction.wait();
+      console.log("Transaction Hash:", transaction.hash);
+      console.log("Transaction Receipt:", await transaction.wait());
+      // await transaction.wait();
       Swal.fire({
         icon: "success",
         title: "Success",
@@ -238,7 +242,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
         title: "Oops...",
         text: "Something went wrong!",
       });
-      console.log(error);
+      console.log(error.message);
     }
   };
   return (

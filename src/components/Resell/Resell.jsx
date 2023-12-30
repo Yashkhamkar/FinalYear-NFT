@@ -44,7 +44,7 @@ const Resell = () => {
                 <div className="control maximize"></div>
               </div>
             </div>
-            <div className="texti">Creating...</div>
+            <div className="texti">Reselling...</div>
           </div>
         )}
         {!loading && (
