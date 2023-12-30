@@ -8,11 +8,12 @@ const NewCard = ({
   timeRemaining,
   type,
   onclick,
-  show,
+  showButton = true, // Add a showButton prop with a default value of true
 }) => {
   const handleClick = () => {
     onclick();
   };
+
   return (
     <div>
       <section>
@@ -41,8 +42,9 @@ const NewCard = ({
               ) : null}
             </div>
             <div className="line"></div>
-            {show === true ? (
-              <div className="avatar">
+
+            <div className="avatar">
+              {showButton && ( // Conditionally render the button based on showButton prop
                 <button
                   className="n-btn"
                   style={{
@@ -58,21 +60,8 @@ const NewCard = ({
                     ? "RESELL"
                     : "BUY NOW"}
                 </button>
-              </div>
-            ) : null}
-            {/* <div className="avatar">
-              <button
-                className="n-btn"
-                style={{
-                  marginTop: "10px",
-                  marginLeft: "13px",
-                  cursor: "pointer",
-                }}
-                onClick={handleClick}
-              >
-                {type === "auction" ? "BID NOW" : "BUY NOW"}
-              </button>
-            </div> */}
+              )}
+            </div>
           </div>
         </div>
       </section>

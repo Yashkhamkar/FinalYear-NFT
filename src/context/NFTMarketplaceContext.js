@@ -150,9 +150,6 @@ export const NFTMarketplaceProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    fetchNFTs();
-  }, []);
 
   const fetchMyNFTs = async (type) => {
     try {

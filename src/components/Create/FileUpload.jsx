@@ -46,7 +46,8 @@ const FileUpload = () => {
         });
 
         const ImgHash = `ipfs://${resFile.data.IpfsHash}`;
-        createNft(name, description, ImgHash, price);
+        await createNft(name, description, ImgHash, price);
+        setLoading(false);
       } catch (error) {
         Swal.fire({
           title: "Error",
@@ -61,7 +62,6 @@ const FileUpload = () => {
         Setfile(null);
         setdescription("");
         setSelectedFileName("");
-        setLoading(false);
       }
     } else {
       Swal.fire({

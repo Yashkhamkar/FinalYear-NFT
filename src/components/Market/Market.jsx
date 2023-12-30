@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { NFTMarketplaceContext } from "../../context/NFTMarketplaceContext";
 import NewCard from "../Card/NewCard";
 import "./market.css";
+import Loader from "../Loader/Loader";
 
 const Market = () => {
   const { fetchNFTs } = useContext(NFTMarketplaceContext);
@@ -34,6 +35,11 @@ const Market = () => {
           MarketPlace
         </span>
       </div>
+      {nfts.length === 0 && (
+        <div className="absolute-center" style={{ marginTop: "200px" }}>
+          <Loader />
+        </div>
+      )}
       <div className="card-container">
         {nfts.map((item, index) => (
           <NewCard
