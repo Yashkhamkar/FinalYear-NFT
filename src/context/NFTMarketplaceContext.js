@@ -23,13 +23,10 @@ export const NFTMarketplaceProvider = ({ children }) => {
   const connectingWithSmartContract = async () => {
     try {
       const web3modal = new Web3Modal();
-      console.log("Web3Modal instance:", web3modal); // Add this line
       const connection = await web3modal.connect();
-      console.log("Connection:", connection); // Add this line
       const provider = new ethers.providers.Web3Provider(connection);
       const signer = provider.getSigner();
       const contract = fetchContract(signer);
-      console.log("Contract instance:", contract);
       return { signer, contract };
     } catch (error) {
       console.log("Error connecting with smart contract:", error);
@@ -118,10 +115,8 @@ export const NFTMarketplaceProvider = ({ children }) => {
   const fetchNFTs = async () => {
     try {
       // const { contract } = await connectingWithSmartContract();
-      const provider = new ethers.providers.JsonRpcProvider(
-        "https://polygon-mumbai.g.alchemy.com/v2/Cgx1meggnhFoXSqIZapIkj0LPDZePCyS"
-      );
-      // const provider = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.g.alchemy.com/v2/Cgx1meggnhFoXSqIZapIkj0LPDZePCyS");
+      // const provider = new ethers.providers.JsonRpcProvider();
+      const provider = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.g.alchemy.com/v2/Cgx1meggnhFoXSqIZapIkj0LPDZePCyS");
       const contract = fetchContract(provider);
       const data = await contract.fetchMarketItems(); // Invoke fetchMarketItems function
       const items = await Promise.all(
@@ -187,6 +182,17 @@ export const NFTMarketplaceProvider = ({ children }) => {
   };
   const createNft = async (name, description, image, price) => {
     if (!name || !description || !image || !price) return;
+    const existingItems = await fetchNFTs();
+    const imageHash = image.replace("https://gateway.pinata.cloud/ipfs/", "");
+
+    if (existingItems.some((item) => item.image === imageHash)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Duplicate Image",
+        text: "This NFT already exists. Please choose a different image.",
+      });
+      return;
+    }
     const data = JSON.stringify({
       name,
       description,
