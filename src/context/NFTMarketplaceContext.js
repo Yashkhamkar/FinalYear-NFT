@@ -96,7 +96,8 @@ export const NFTMarketplaceProvider = ({ children }) => {
         : await contract.resellToken(id, price, {
             value: listingPrice.toString(),
           });
-      await transaction.wait();
+      const receipt = await transaction.wait();
+      console.log("Transaction Receipt:", receipt);
       await Swal.fire({
         icon: "success",
         title: "Success",
@@ -104,19 +105,22 @@ export const NFTMarketplaceProvider = ({ children }) => {
       });
       navigate("/market");
     } catch (error) {
-      console.log(error);
+      console.log("Error creating sale:", error);
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Something went wrong!",
       });
+      throw error;
     }
   };
   const fetchNFTs = async () => {
     try {
       // const { contract } = await connectingWithSmartContract();
       // const provider = new ethers.providers.JsonRpcProvider();
-      const provider = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.g.alchemy.com/v2/Cgx1meggnhFoXSqIZapIkj0LPDZePCyS");
+      const provider = new ethers.providers.JsonRpcProvider(
+        "https://polygon-amoy.g.alchemy.com/v2/IEhW7Tz0ZWO70Y_Fa-JVxdk_KUWPXfi7"
+      );
       const contract = fetchContract(provider);
       const data = await contract.fetchMarketItems(); // Invoke fetchMarketItems function
       const items = await Promise.all(
@@ -182,24 +186,26 @@ export const NFTMarketplaceProvider = ({ children }) => {
   };
   const createNft = async (name, description, image, price) => {
     if (!name || !description || !image || !price) return;
-    const existingItems = await fetchNFTs();
-    const imageHash = image.replace("https://gateway.pinata.cloud/ipfs/", "");
-
-    if (existingItems.some((item) => item.image === imageHash)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Duplicate Image",
-        text: "This NFT already exists. Please choose a different image.",
-      });
-      return;
-    }
-    const data = JSON.stringify({
-      name,
-      description,
-      image,
-    });
 
     try {
+      const existingItems = await fetchNFTs();
+      const imageHash = image.replace("https://gateway.pinata.cloud/ipfs/", "");
+
+      // if (existingItems.some((item) => item.image === imageHash)) {
+      //   Swal.fire({
+      //     icon: "warning",
+      //     title: "Duplicate Image",
+      //     text: "This NFT already exists. Please choose a different image.",
+      //   });
+      //   return;
+      // }
+
+      const data = JSON.stringify({
+        name,
+        description,
+        image,
+      });
+
       const response = await axios.post(
         "https://api.pinata.cloud/pinning/pinJSONToIPFS",
         data, // Pass the data directly, not inside an object
