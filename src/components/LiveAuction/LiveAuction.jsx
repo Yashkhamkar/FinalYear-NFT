@@ -18,32 +18,32 @@ const NFTS = [
   {
     image: img1,
     title: "What is a NFT?",
-    to: "/101nft",
+    to: "https://opensea.io/learn/nft/what-are-nfts",
   },
   {
     image: img2,
     title: "How to buy a NFT?",
-    to: "/101buy",
+    to: "https://opensea.io/learn/nft/how-to-buy-nft",
   },
   {
     image: img3,
     title: "What is minting?",
-    to: "/101mint",
+    to: "https://opensea.io/learn/nft/what-is-minting-nft",
   },
   {
     image: img4,
     title: "How to create a NFT?",
-    to: "/101create",
+    to: "https://opensea.io/learn/nft/how-to-create-an-nft",
   },
   {
     image: img5,
     title: "How to sell a NFT?",
-    to: "/101sell",
+    to: "https://opensea.io/learn/nft/how-to-sell-nfts",
   },
   {
     image: img6,
     title: "What is a crypto wallet?",
-    to: "/101wallet",
+    to: "https://opensea.io/learn/web3/what-is-crypto-wallet",
   },
 ];
 const LiveAuction = ({ title, type, data, id }) => {
